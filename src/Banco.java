@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class Banco {
     public static void main(String[] args) {
+
         double saldo = 2500.00;
         Scanner scanner = new Scanner(System.in);
-
-        String menu;
-        String resumo;
-        resumo = """
+        String resumo = """
                 ***********************
                 Dados iniciais do cliente:
                 
@@ -16,7 +14,7 @@ public class Banco {
                 Saldo inicial: R$ 2500,00
                 ***********************
                 """;
-        menu = """
+        String menu = """
                 Operações
                 
                 1- Consultar saldos
@@ -38,13 +36,19 @@ public class Banco {
 
             switch (escolhaMenu) {
                 case 1:
-                    consultarSaldos();
+                    System.out.printf("Seu saldo atual é R$ %.2f %n", saldo);
                     break;
                 case 2:
-                    receberValor();
+                    System.out.println("Informe o valor a receber:");
+                    double deposito = scanner.nextDouble();
+                    saldo = saldo + deposito;
+                    System.out.printf("Saldo atualizado R$ %.2f %n", saldo);
                     break;
                 case 3:
-                    transferirValor();
+                    System.out.println("Informe o valor que deseja transferir:");
+                    double transferencia = scanner.nextDouble();
+                    saldo = saldo - transferencia;
+                    System.out.printf("Saldo atualizado R$ %.2f %n", saldo);
                     break;
 
                 case 4:
@@ -54,30 +58,4 @@ public class Banco {
 
 
     }
-
-
-    static void consultarSaldos() {
-        System.out.println("Seu saldo atual é R$ 2.500,00");
-    }
-
-    static void receberValor() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe o valor a receber:");
-        double deposito = scanner.nextDouble();
-        double saldoAtualizado = saldo + deposito;
-        System.out.printf("Saldo atualizado R$ %.2f %n", saldoAtualizado);
-
-    }
-
-
-    static void transferirValor() {
-        System.out.println("Informe o valor que deseja transferir:");
-    }
-
-
 }
-
-//1- Consultar saldos
-//2- Receber valor
-//3- Transferir valor
-//4- Sair
