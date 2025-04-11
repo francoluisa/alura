@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Banco {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         double saldo = 2500.00;
-        Scanner scanner = new Scanner(System.in);
         String resumo = """
                 ***********************
                 Dados iniciais do cliente:
@@ -47,8 +47,12 @@ public class Banco {
                 case 3:
                     System.out.println("Informe o valor que deseja transferir:");
                     double transferencia = scanner.nextDouble();
-                    saldo = saldo - transferencia;
-                    System.out.printf("Saldo atualizado R$ %.2f %n", saldo);
+                    if (transferencia > saldo) {
+                        System.out.println("Não há saldo para realizar a transferência.");
+                    } else {
+                        saldo = saldo - transferencia;
+                        System.out.printf("Saldo atualizado R$ %.2f %n", saldo);
+                    }
                     break;
 
                 case 4:
